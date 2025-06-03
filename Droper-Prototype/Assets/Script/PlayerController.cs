@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     public InputActionReference JumpAction;
 
     public float speed = 5f;
-    public float mouseSensitivity = 2f;
-    public float jumpForce = 5f;
+    public float mouseSensitivity = 0.1f;
+    public float jumpForce = 50f;
 
     public Rigidbody rb;
     public Transform playerCamera;
