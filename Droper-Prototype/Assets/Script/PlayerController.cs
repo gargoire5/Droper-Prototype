@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour
         MoveAction.action.Enable();
         LookAction.action.Enable();
         JumpAction.action.Enable();
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.visible = false;
     }
 
     void Update()
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         inputDirection = MoveAction.action.ReadValue<Vector2>();
         lookDelta = LookAction.action.ReadValue<Vector2>();
 
-        RotateView();
+        //RotateView();
 
         if (JumpAction.action.WasPressedThisFrame() && isGrounded)
         {
