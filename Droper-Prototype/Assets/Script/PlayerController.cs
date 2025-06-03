@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded;
 
+    float camZ;
+
     
 
     void Start()
@@ -66,7 +68,9 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up * mouseDelta.x);
 
         verticalLookRotation -= mouseDelta.y;
-        verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f);
+        verticalLookRotation = Mathf.Clamp(verticalLookRotation, 30f, 90f);
+        camZ = ((verticalLookRotation - 90) / 10);
+        playerCamera.localPosition = new Vector3(playerCamera.localPosition.x, playerCamera.localPosition.y, Mathf.Clamp(camZ, -6f, 0f));
         playerCamera.localRotation = Quaternion.Euler(verticalLookRotation, 0f, 0f);
     }
 

@@ -11,7 +11,9 @@ public class PlayerData : MonoBehaviour
         Player = 6,
         Obs,
         Sol,
-        Safe
+        Safe,
+        Bumper,
+        Anneau
     }
 
     public int Life;
@@ -43,12 +45,20 @@ public class PlayerData : MonoBehaviour
         {
             Damage();
             Debug.Log("DEAD");
+            GetComponent<Score>().score = 0;
         }
         else if (collision.gameObject.layer == (int)Layer.Safe)
         {
             collision.gameObject.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
             Win();
             Debug.Log("WIN");
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == (int)Layer.Anneau)
+        {
+            GetComponent<Score>().AddPoint(500);
         }
     }
 
