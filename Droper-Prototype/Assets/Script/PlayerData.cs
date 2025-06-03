@@ -23,6 +23,9 @@ public class PlayerData : MonoBehaviour
     public GameObject textLose;
 
     public TMP_Text textLife;
+
+    public GenerateRamdom generate;
+
     void Start()
     {
         firstTransform = this.gameObject.transform.position;
@@ -51,7 +54,16 @@ public class PlayerData : MonoBehaviour
         {
             collision.gameObject.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
             Win();
+
+            generate.generateRamdom();
             Debug.Log("WIN");
+            this.gameObject.transform.position = firstTransform;
+            Life = 10;
+            textLife.text = "";
+            for (int i = 0; i < Life; i++)
+            {
+                textLife.text += "0";
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
