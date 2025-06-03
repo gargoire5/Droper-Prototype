@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
         LookAction.action.Enable();
         JumpAction.action.Enable();
         Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     void Update()
