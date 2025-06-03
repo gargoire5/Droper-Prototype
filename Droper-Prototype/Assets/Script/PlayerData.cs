@@ -47,6 +47,7 @@ public class PlayerData : MonoBehaviour
         else if (collision.gameObject.layer == (int)Layer.Safe)
         {
             collision.gameObject.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+            Win();
             Debug.Log("WIN");
         }
     }
@@ -69,5 +70,15 @@ public class PlayerData : MonoBehaviour
                 textLife.text += "0";
             }
         }
+    }
+
+    void Win()
+    {
+        for (int i = 0; i < Life; i++)
+        {
+            GetComponent<Score>().AddPoint(100);
+        }
+        GetComponent<Score>().AddPoint(2000);
+        GetComponent<Score>().Scoretext.gameObject.SetActive(true);        
     }
 }
