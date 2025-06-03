@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,22 +11,19 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 5f;
     public float mouseSensitivity = 2f;
+    public float jumpForce = 5f;
 
+    public Rigidbody rb;
     public Transform playerCamera;
 
-    private CharacterController controller;
     private Vector2 inputDirection;
     private Vector2 lookDelta;
     private float verticalLookRotation = 0f;
 
-    public float jumpHeight = 2f;
-    public float gravity = -9.81f;
-    private float verticalVelocity = 0f;
     private bool isGrounded;
 
     void Start()
     {
-        controller = GetComponent<CharacterController>();
         MoveAction.action.Enable();
         LookAction.action.Enable();
         JumpAction.action.Enable();
@@ -35,54 +33,56 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        HandleMovement();
-        HandleLook();
-        HandleJump();
-    }
-
-    void HandleMovement()
-    {
         inputDirection = MoveAction.action.ReadValue<Vector2>();
-        Vector3 move = transform.right * inputDirection.x + transform.forward * inputDirection.y;
-        controller.Move(move * speed * Time.deltaTime);
+        lookDelta = LookAction.action.ReadValue<Vector2>();
+
+        RotateView();
+
+        if (JumpAction.action.WasPressedThisFrame() && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
-    void HandleLook()
+    void FixedUpdate()
     {
-        lookDelta = LookAction.action.ReadValue<Vector2>() * mouseSensitivity;
+        MovePlayer();
+    }
 
-        transform.Rotate(Vector3.up * lookDelta.x);
+    private void MovePlayer()
+    {
+        Vector3 move = transform.forward * inputDirection.y + transform.right * inputDirection.x;
+        Vector3 velocity = move * speed;
+        Vector3 rbVelocity = new Vector3(velocity.x, velocity.y, velocity.z);
+        rb.velocity = rbVelocity;
+    }
 
-        verticalLookRotation -= lookDelta.y;
+    private void RotateView()
+    {
+        Vector2 mouseDelta = lookDelta * mouseSensitivity;
+
+        transform.Rotate(Vector3.up * mouseDelta.x);
+
+        verticalLookRotation -= mouseDelta.y;
         verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f);
         playerCamera.localRotation = Quaternion.Euler(verticalLookRotation, 0f, 0f);
     }
 
-    void HandleJump()
+    private void OnCollisionStay(Collision collision)
     {
-        isGrounded = controller.isGrounded;
-
-        Debug.Log("isGrounded: " + controller.isGrounded);
-
-        if (isGrounded && verticalVelocity < 0)
+        foreach (ContactPoint contact in collision.contacts) 
         {
-            verticalVelocity = -2f;
+            if(Vector3.Dot(contact.normal, Vector3.up) > 0.5f)
+            {
+                isGrounded = true;
+                return;
+            }
         }
+    }
 
-        if (isGrounded && JumpAction.action.WasPressedThisFrame())
-        {
-            verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
-
-        if (JumpAction.action.WasPressedThisFrame())
-        {
-            Debug.Log("Jump pressed!");
-        }
-
-        verticalVelocity += gravity * Time.deltaTime;
-
-        Vector3 verticalMove = Vector3.up * verticalVelocity;
-        controller.Move(verticalMove * Time.deltaTime);
+    private void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false;
     }
 }
 
