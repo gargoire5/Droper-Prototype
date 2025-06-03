@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     public InputActionReference JumpAction;
 
     public float speed = 5f;
-    public float mouseSensitivity = 2f;
-    public float jumpForce = 5f;
+    public float mouseSensitivity = 0.1f;
+    public float jumpForce = 50f;
 
     public Rigidbody rb;
     public Transform playerCamera;
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 move = transform.forward * inputDirection.y + transform.right * inputDirection.x;
         Vector3 velocity = move * speed;
-        Vector3 rbVelocity = new Vector3(velocity.x, velocity.y, velocity.z);
+        Vector3 rbVelocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
         rb.velocity = rbVelocity;
     }
 
