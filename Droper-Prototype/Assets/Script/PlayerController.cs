@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private float verticalVelocity = 0f;
     private bool isGrounded;
 
+    
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -84,6 +86,8 @@ public class PlayerController : MonoBehaviour
         Vector3 verticalMove = Vector3.up * verticalVelocity;
         controller.Move(verticalMove * Time.deltaTime);
     }
+
+    
 }
 
 

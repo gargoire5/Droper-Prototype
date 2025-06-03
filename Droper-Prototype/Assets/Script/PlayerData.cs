@@ -1,27 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerData : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    enum Layer{
-    
+    enum Layer
+    {
         Player = 6,
         Obs,
         Sol,
-        Socle
+        Safe
     }
-    
-    public int Life = 10;
+
+    public int Life;
 
     public Vector3 firstTransform;
 
+    public GameObject textLose;
+
+    public TMP_Text textLife;
     void Start()
     {
         firstTransform = this.gameObject.transform.position;
+        textLife.text = "";
+        for (int i = 0; i < Life; i++)
+        {
+            textLife.text += "0";
+        }
     }
 
     // Update is called once per frame
@@ -30,22 +37,18 @@ public class PlayerData : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(UnityEngine.Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == (int)Layer.Obs)
+        if (collision.gameObject.layer == (int)Layer.Obs)
         {
             Damage();
-            Debug.Log("collision");
+            Debug.Log("DEAD");
         }
-        else if(collision.gameObject.layer == (int)Layer.Socle)
+        else if (collision.gameObject.layer == (int)Layer.Safe)
         {
-            Debug.Log("win");
+            collision.gameObject.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+            Debug.Log("WIN");
         }
-    }
-
-    private void OnCollisionExit(UnityEngine.Collision collision)
-    {
-        
     }
 
     void Damage()
@@ -53,8 +56,18 @@ public class PlayerData : MonoBehaviour
         Life--;
         if (Life <= 0)
         {
-            //Lose
+            textLife.text = "";
+            Debug.Log("LOSE");
+            textLose.SetActive(true);
         }
-        this.gameObject.transform.position = firstTransform;
+        else
+        {
+            this.gameObject.transform.position = firstTransform;
+            textLife.text = "";
+            for (int i = 0;i < Life; i++)
+            {
+                textLife.text += "0";
+            }
+        }
     }
 }
