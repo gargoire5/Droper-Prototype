@@ -26,6 +26,10 @@ public class PlayerData : MonoBehaviour
 
     public GenerateRamdom generate;
 
+    public GameObject selectLv;
+
+    int lv;
+
     void Start()
     {
         firstTransform = this.gameObject.transform.position;
@@ -47,7 +51,6 @@ public class PlayerData : MonoBehaviour
         if (collision.gameObject.layer == (int)Layer.Obs)
         {
             Damage();
-            Debug.Log("DEAD");
             GetComponent<Score>().score = 0;
         }
         else if (collision.gameObject.layer == (int)Layer.Safe)
@@ -55,8 +58,8 @@ public class PlayerData : MonoBehaviour
             collision.gameObject.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
             Win();
 
-            generate.generateRamdom();
-            Debug.Log("WIN");
+            selectLv.SetActive(true);
+
             this.gameObject.transform.position = firstTransform;
             Life = 10;
             textLife.text = "";
@@ -73,6 +76,10 @@ public class PlayerData : MonoBehaviour
             GetComponent<Score>().AddPoint(500);
         }
     }
+    public void selectlv(int lvselect)
+    {
+        lv = lvselect;
+    }
 
     void Damage()
     {
@@ -80,7 +87,6 @@ public class PlayerData : MonoBehaviour
         if (Life <= 0)
         {
             textLife.text = "";
-            Debug.Log("LOSE");
             textLose.SetActive(true);
         }
         else
@@ -100,7 +106,7 @@ public class PlayerData : MonoBehaviour
         {
             GetComponent<Score>().AddPoint(100);
         }
-        GetComponent<Score>().AddPoint(2000);
+        GetComponent<Score>().AddPoint(2000*lv);
         GetComponent<Score>().Scoretext.gameObject.SetActive(true);        
     }
 }

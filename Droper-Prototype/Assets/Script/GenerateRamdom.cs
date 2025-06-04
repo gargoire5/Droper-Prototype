@@ -17,7 +17,7 @@ public class GenerateRamdom : MonoBehaviour
 
     void Start()
     {
-        generateRamdom();
+        
     }
 
     void Update()
@@ -38,14 +38,14 @@ public class GenerateRamdom : MonoBehaviour
         }
     }
 
-    public void generateRamdom()
+    public void generateRamdom(int numObs)
     {
         int bouc = this.transform.childCount;
         for (int i = 0; i < bouc; i++)
         {
             Destroy(this.transform.GetChild(this.transform.childCount-1).gameObject);
         }
-        for (int i = 0; i < 800; i++)
+        for (int i = 0; i < numObs; i++)
         {
 
             float positionX = Random.Range(-50,50);
@@ -59,9 +59,8 @@ public class GenerateRamdom : MonoBehaviour
             prefab.transform.parent = transform;
             prefab.transform.localPosition = position;
             prefab.transform.localRotation = Random.rotation;
-            Debug.Log("instan");
         }
-        for (int i = 0;i < 50; i++)
+        for (int i = 0;i < numObs / 16; i++)
         {
             float positionX = Random.Range(-50, 50);
             float positionY = RandomPos(-50, -10, 10, 50);
