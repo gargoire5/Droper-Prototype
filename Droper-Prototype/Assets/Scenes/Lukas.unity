@@ -53870,6 +53870,8 @@ MonoBehaviour:
   textLife: {fileID: 2130361874}
   generate: {fileID: 1585815315}
   selectLv: {fileID: 152226650}
+  Shield: {fileID: 2080145104}
+  shield: 0
 --- !u!114 &1586399376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61012,6 +61014,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae63391f8a733694eba8770d69e7314e, type: 3}
+--- !u!1 &2080145104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3093649461256286626, guid: fdf92c59b0f29dd45a1d20630bbadec2, type: 3}
+  m_PrefabInstance: {fileID: 2121684055}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2083859388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62145,7 +62152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3665902016025270466, guid: fdf92c59b0f29dd45a1d20630bbadec2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.6
+      value: 43.2
       objectReference: {fileID: 0}
     - target: {fileID: 3665902016025270466, guid: fdf92c59b0f29dd45a1d20630bbadec2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -62153,7 +62160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3665902016025270466, guid: fdf92c59b0f29dd45a1d20630bbadec2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 673.1
+      value: 374.5
       objectReference: {fileID: 0}
     - target: {fileID: 3665902016025270466, guid: fdf92c59b0f29dd45a1d20630bbadec2, type: 3}
       propertyPath: m_LocalRotation.w

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -28,10 +29,15 @@ public class PlayerData : MonoBehaviour
 
     public GameObject selectLv;
 
+    public GameObject Shield;
+    public bool hasShield;
+    public bool isInvicible;
+
     int lv;
 
     void Start()
     {
+        hasShield = true;
         firstTransform = this.gameObject.transform.position;
         textLife.text = "";
         for (int i = 0; i < Life; i++)
@@ -81,8 +87,33 @@ public class PlayerData : MonoBehaviour
         lv = lvselect;
     }
 
+    public bool AbsorbDamage()
+    {
+        if(isInvicible) return true;
+        if (hasShield)    
+        {
+            hasShield = false;
+            Shield.SetActive(false);
+            StartCoroutine(Inviciblity());
+            return true;
+        }
+
+        return false;
+    }
+
+    IEnumerator Inviciblity()
+    {
+        isInvicible = true;
+        yield return new WaitForSeconds(1);
+        isInvicible = false;
+    }
+
     void Damage()
     {
+        if (AbsorbDamage())
+        {
+            return;
+        }
         Life--;
         if (Life <= 0)
         {
@@ -92,8 +123,10 @@ public class PlayerData : MonoBehaviour
         else
         {
             this.gameObject.transform.position = firstTransform;
+            hasShield = true;
+            Shield.SetActive(true);
             textLife.text = "";
-            for (int i = 0;i < Life; i++)
+            for (int i = 0; i < Life; i++)
             {
                 textLife.text += "0";
             }
