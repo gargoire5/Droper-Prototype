@@ -5235,6 +5235,7 @@ Transform:
   - {fileID: 247557776}
   - {fileID: 1570815610}
   - {fileID: 557735022}
+  - {fileID: 1314207683}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &625667694
@@ -27361,7 +27362,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 625536293}
     m_Modifications:
     - target: {fileID: 2924873163952767292, guid: ca8173d85079e374eba5d29a1981f617, type: 3}
       propertyPath: m_Name
@@ -27377,19 +27378,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6661461379362264087, guid: ca8173d85079e374eba5d29a1981f617, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.3700128
+      value: 3.3700125
       objectReference: {fileID: 0}
     - target: {fileID: 6661461379362264087, guid: ca8173d85079e374eba5d29a1981f617, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.696
+      value: 17.595999
       objectReference: {fileID: 0}
     - target: {fileID: 6661461379362264087, guid: ca8173d85079e374eba5d29a1981f617, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.522831
+      value: -100.277176
       objectReference: {fileID: 0}
     - target: {fileID: 6661461379362264087, guid: ca8173d85079e374eba5d29a1981f617, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 619.95
+      value: 227.25
       objectReference: {fileID: 0}
     - target: {fileID: 6661461379362264087, guid: ca8173d85079e374eba5d29a1981f617, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27424,6 +27425,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca8173d85079e374eba5d29a1981f617, type: 3}
+--- !u!4 &1314207683 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6661461379362264087, guid: ca8173d85079e374eba5d29a1981f617, type: 3}
+  m_PrefabInstance: {fileID: 1314207682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1314444625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43069,6 +43075,7 @@ MonoBehaviour:
   textLose: {fileID: 1939156537}
   textLife: {fileID: 2130361874}
   generate: {fileID: 1585815315}
+  selectLv: {fileID: 0}
 --- !u!114 &1586399376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43096,6 +43103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UsePowerUpAction: {fileID: -8173971320584851149, guid: 7f9985e8f43e77d4a93e212df4897566, type: 3}
+  PowerUp: {fileID: 0}
   slowMultiplier: 0.3
   slowDuartion: 3
   cooldownTime: 10
@@ -63218,4 +63226,3 @@ SceneRoots:
   - {fileID: 1731522501}
   - {fileID: 1487651181}
   - {fileID: 625536293}
-  - {fileID: 1314207682}
