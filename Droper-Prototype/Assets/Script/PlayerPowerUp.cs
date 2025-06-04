@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerPowerUp : MonoBehaviour
 {
     public InputActionReference UsePowerUpAction;
+
+    public TextMeshProUGUI PowerUp;
 
     public float slowMultiplier = 0.3f;
     public float slowDuartion = 3.0f;
@@ -37,13 +40,28 @@ public class PlayerPowerUp : MonoBehaviour
         {
             rb.velocity = rb.velocity * slowMultiplier;
         }
+
+        if (isCooldown == true) 
+        {
+            PowerUp.text = "Slow (E) en Cooldown";
+        }
+
+        if (isSlowed)
+        {
+            PowerUp.text = "Slow (E) en slow";
+        }
+
+        if (isCooldown == false) 
+        {
+            PowerUp.text = "Slow (E) peut être utilisé";
+        }
     }
 
     private void TryActivePowerUp()
     {
         if (!isCooldown)
         {
-            StartCoroutine(SlowEffect());
+            StartCoroutine(SlowEffect()); 
         }
     }
 
