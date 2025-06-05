@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
 
     float camZ;
 
+    public bool isdead;
+
+    public bool isselect;
+
     
 
     void Start()
@@ -33,6 +37,8 @@ public class PlayerController : MonoBehaviour
         JumpAction.action.Enable();
         //Cursor.lockState = CursorLockMode.Confined;
         //Cursor.visible = false;
+        isdead = false;
+        isselect = false;
     }
 
     void Update()
@@ -50,7 +56,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        MovePlayer();
+        if (!isdead && isselect)
+        {
+            MovePlayer();
+        }
     }
 
     private void MovePlayer()

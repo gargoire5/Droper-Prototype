@@ -15,6 +15,8 @@ public class GenerateRamdom : MonoBehaviour
     public float MaxZ;
     public float MinZ;
 
+    public PlayerController playerController;
+
     void Start()
     {
         
@@ -70,5 +72,6 @@ public class GenerateRamdom : MonoBehaviour
             prefab.transform.parent = transform;
             prefab.transform.localPosition = position;
         }
+        playerController.isselect = true;
     }
 }

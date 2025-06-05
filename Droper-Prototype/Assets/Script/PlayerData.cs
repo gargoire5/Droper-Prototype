@@ -95,6 +95,7 @@ public class PlayerData : MonoBehaviour
         {
             textLife.text = "";
             textLose.SetActive(true);
+            GetComponent<PlayerController>().isdead = true;
         }
         else
         {
@@ -114,6 +115,8 @@ public class PlayerData : MonoBehaviour
             GetComponent<Score>().AddPoint(100);
         }
         GetComponent<Score>().AddPoint(2000*lv);
-        GetComponent<Score>().Scoretext.gameObject.SetActive(true);        
+        GetComponent<Score>().Scoretext.gameObject.SetActive(true);
+        selectLv.SetActive(true);
+        GetComponent<PlayerController>().isselect = false;
     }
 }
