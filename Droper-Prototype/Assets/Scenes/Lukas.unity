@@ -53870,8 +53870,7 @@ MonoBehaviour:
   textLife: {fileID: 2130361874}
   generate: {fileID: 1585815315}
   selectLv: {fileID: 152226650}
-  Shield: {fileID: 2080145104}
-  shield: 0
+  PlayerPowerUp: {fileID: 1586399384}
 --- !u!114 &1586399376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53899,10 +53898,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UsePowerUpAction: {fileID: -8173971320584851149, guid: 7f9985e8f43e77d4a93e212df4897566, type: 3}
+  UseShield: {fileID: -7756558927765042791, guid: 7f9985e8f43e77d4a93e212df4897566, type: 3}
   PowerUp: {fileID: 1455599057}
   slowMultiplier: 0.3
   slowDuartion: 3
   cooldownTime: 10
+  Shield: {fileID: 2080145104}
+  hasShield: 0
+  isInvicible: 0
+  isOnCooldown: 0
+  cooldownShield: 20
+  invicibilityDuration: 1
 --- !u!4 &1592515801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6007468463862624395, guid: edbe1bba0111ad1429b4eaba42f3d677, type: 3}
