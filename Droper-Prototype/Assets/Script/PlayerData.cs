@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,7 +14,8 @@ public class PlayerData : MonoBehaviour
         Sol,
         Safe,
         Bumper,
-        Anneau
+        Anneau,
+        BigObs
     }
 
     public int Life;
@@ -27,6 +29,8 @@ public class PlayerData : MonoBehaviour
     public GenerateRamdom generate;
 
     public GameObject selectLv;
+
+    public PlayerPowerUp PlayerPowerUp;
 
     int lv;
 
@@ -46,10 +50,24 @@ public class PlayerData : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.layer == (int)Layer.Obs)
         {
+            if (PlayerPowerUp.AbsorbDamage())
+            {
+                Destroy(collision.gameObject);
+                return;
+            }
+            Damage();
+            GetComponent<Score>().score = 0;
+        }
+        if(collision.gameObject.layer == (int)Layer.BigObs)
+        {
+            if (PlayerPowerUp.AbsorbDamage())
+            {
+                return;
+            }
             Damage();
             GetComponent<Score>().score = 0;
         }
@@ -94,7 +112,7 @@ public class PlayerData : MonoBehaviour
         {
             this.gameObject.transform.position = firstTransform;
             textLife.text = "";
-            for (int i = 0;i < Life; i++)
+            for (int i = 0; i < Life; i++)
             {
                 textLife.text += "0";
             }
