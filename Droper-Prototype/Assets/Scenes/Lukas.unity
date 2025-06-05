@@ -54330,6 +54330,7 @@ MonoBehaviour:
   textLife: {fileID: 2130361874}
   generate: {fileID: 1585815315}
   selectLv: {fileID: 152226650}
+  PlayerPowerUp: {fileID: 1586399384}
 --- !u!114 &1586399376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54357,10 +54358,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UsePowerUpAction: {fileID: -8173971320584851149, guid: 7f9985e8f43e77d4a93e212df4897566, type: 3}
+  UseShield: {fileID: -7756558927765042791, guid: 7f9985e8f43e77d4a93e212df4897566, type: 3}
   PowerUp: {fileID: 1455599057}
   slowMultiplier: 0.3
   slowDuartion: 3
   cooldownTime: 10
+  Shield: {fileID: 2121684056}
+  hasShield: 0
+  isInvicible: 0
+  isOnCooldown: 0
+  cooldownShield: 20
+  invicibilityDuration: 2
 --- !u!114 &1586399386 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1620462417982823748, guid: fdf92c59b0f29dd45a1d20630bbadec2, type: 3}
@@ -62807,6 +62815,10 @@ PrefabInstance:
       propertyPath: mouseSensitivity
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3093649461256286626, guid: fdf92c59b0f29dd45a1d20630bbadec2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3665902016025270466, guid: fdf92c59b0f29dd45a1d20630bbadec2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.6
@@ -62817,7 +62829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3665902016025270466, guid: fdf92c59b0f29dd45a1d20630bbadec2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 673.1
+      value: 424.1
       objectReference: {fileID: 0}
     - target: {fileID: 3665902016025270466, guid: fdf92c59b0f29dd45a1d20630bbadec2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -62909,6 +62921,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1586399384}
   m_SourcePrefab: {fileID: 100100000, guid: fdf92c59b0f29dd45a1d20630bbadec2, type: 3}
+--- !u!1 &2121684056 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3093649461256286626, guid: fdf92c59b0f29dd45a1d20630bbadec2, type: 3}
+  m_PrefabInstance: {fileID: 2121684055}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2126548813
 PrefabInstance:
   m_ObjectHideFlags: 0

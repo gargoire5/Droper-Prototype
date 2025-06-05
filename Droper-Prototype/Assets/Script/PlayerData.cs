@@ -14,7 +14,8 @@ public class PlayerData : MonoBehaviour
         Sol,
         Safe,
         Bumper,
-        Anneau
+        Anneau,
+        BigObs
     }
 
     public int Life;
@@ -53,6 +54,20 @@ public class PlayerData : MonoBehaviour
     {
         if (collision.gameObject.layer == (int)Layer.Obs)
         {
+            if (PlayerPowerUp.AbsorbDamage())
+            {
+                Destroy(collision.gameObject);
+                return;
+            }
+            Damage();
+            GetComponent<Score>().score = 0;
+        }
+        if(collision.gameObject.layer == (int)Layer.BigObs)
+        {
+            if (PlayerPowerUp.AbsorbDamage())
+            {
+                return;
+            }
             Damage();
             GetComponent<Score>().score = 0;
         }
@@ -84,12 +99,8 @@ public class PlayerData : MonoBehaviour
         lv = lvselect;
     }
 
-    
-
     void Damage()
     {
-        if(PlayerPowerUp.AbsorbDamage())
-            return;
         Life--;
         if (Life <= 0)
         {

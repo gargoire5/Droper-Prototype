@@ -117,6 +117,7 @@ public class PlayerPowerUp : MonoBehaviour
             if (Shield) Shield.SetActive(false);
             StartCoroutine(Inviciblity());
             StartCoroutine(CooldownShield());
+
             return true;
         }
 
