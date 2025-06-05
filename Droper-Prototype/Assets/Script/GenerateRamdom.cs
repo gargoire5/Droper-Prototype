@@ -72,6 +72,22 @@ public class GenerateRamdom : MonoBehaviour
             prefab.transform.parent = transform;
             prefab.transform.localPosition = position;
         }
+        float positiontpX = Random.Range(-25, 25);
+        float positiontpY = Random.Range(10, 50);
+        float positiontpZ = Random.Range(-25, 25);
+
+        Vector3 positiontp = new Vector3(positiontpX, positiontpY, positiontpZ);
+        GameObject prefabtp = Instantiate(prefabOBAHV[5]);
+        prefabtp.transform.parent = transform;
+        prefabtp.transform.localPosition = Vector3.zero;
+        prefabtp.transform.GetChild(0).localPosition = positiontp;
+        positiontpX = Random.Range(-25, 25);
+        positiontpY = Random.Range(-50, -10);
+        positiontpZ = Random.Range(-25, 25);
+
+        positiontp = new Vector3(positiontpX, positiontpY, positiontpZ);
+        prefabtp.transform.GetChild(1).localPosition = positiontp;
+
         playerController.isselect = true;
     }
 }
